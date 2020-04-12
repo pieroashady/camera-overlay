@@ -1,0 +1,18 @@
+// video record
+
+IconButton(
+          icon: const Icon(Icons.videocam),
+          color: Colors.blue,
+          onPressed: controller != null &&
+                  controller.value.isInitialized &&
+                  !controller.value.isRecordingVideo
+              ? onVideoRecordButtonPressed
+              : null,
+        ),
+
+void onVideoRecordButtonPressed() {
+  startVideoRecording().then((String filePath) {
+    if (mounted) setState(() {});
+    if (filePath != null) showInSnackBar('Saving video to $filePath');
+  });
+}
